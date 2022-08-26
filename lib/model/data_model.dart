@@ -1,3 +1,7 @@
+/*
+ * Copyright by Bholendra Singh (c) 2022.
+ */
+
 class DataModel {
   String? title;
   List<Rows>? rows;

@@ -1,3 +1,7 @@
+/*
+ * Copyright by Bholendra Singh (c) 2022.
+ */
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(homeScreenProvider.dataModel != null
               ? homeScreenProvider.dataModel!.title!.toString()
               : "Artivatic"),
+          centerTitle: true,
           actions: [
             IconButton(
                 onPressed: () {
@@ -44,16 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: Text(dataModel.rows![index].title.toString()),
                     subtitle:
                         Text(dataModel.rows![index].description.toString()),
-                    leading: CachedNetworkImage(
-                      imageUrl: dataModel.rows![index].imageHref.toString(),
-                      height: kToolbarHeight,
-                      width: kToolbarHeight,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
+                    leading: imageViewWidget(
+                        dataModel.rows![index].imageHref.toString()),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
@@ -67,6 +64,17 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
         )));
+  }
+
+  Widget imageViewWidget(String url) {
+    return CachedNetworkImage(
+      imageUrl: url,
+      height: kToolbarHeight,
+      width: kToolbarHeight,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
   }
 
   @override

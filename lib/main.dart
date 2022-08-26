@@ -1,3 +1,7 @@
+/*
+ * Copyright by Bholendra Singh (c) 2022.
+ */
+
 import 'package:artivatic/provider/home_screen_provider.dart';
 import 'package:artivatic/view/home_screen.dart';
 import 'package:flutter/material.dart';
